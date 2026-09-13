@@ -1,0 +1,12 @@
+{
+  "search": "fixtures/comparison/paired-history",
+  "reserved": ["fixtures/improvement/configured-history/reserved"],
+  "corpus": "fixtures/comparison/protected-corpus/v1.json",
+  "validation_store": "runs/configured-history-validation",
+  "limits": {
+    "target": "fraud_cases",
+    "max_attempts": 3,
+    "max_elapsed_ms": 60000,
+    "max_input_bytes": 8000000
+  }
+}

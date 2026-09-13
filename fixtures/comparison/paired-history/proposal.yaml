@@ -1,0 +1,15 @@
+kind: statistical_conversion
+tenant: t-alpha
+change:
+  rule_id: lantern-daily
+  threshold_id: lantern-floor
+  thresholds:
+    - id: lantern-window
+      value: 3
+      min: 3
+      max: 60
+proving_scenario:
+  history: invented-lantern-history
+expected_effect:
+  claim: detect the completed 150-unit jump; hypothesis only
+gate_status: ungated until replay

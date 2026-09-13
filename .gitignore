@@ -1,0 +1,21 @@
+# Local inputs and results. Never commit a completed operator configuration.
+internal/
+runs/
+dist/
+node_modules/
+.env
+.env.*
+*.parquet
+*.log
+.scratch/
+.claude/
+.codex/
+tickets/
+docs/agents/
+docs/research/
+fixtures/generator/
+fixtures/game/
+coverage/
+
+# This public snapshot intentionally ships only the focused tests and fixtures.
+# Future work should review each addition before tracking it.

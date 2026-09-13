@@ -1,0 +1,60 @@
+{
+  "run_type": "replay",
+  "goal": "invented merchant relative daily value",
+  "tenant": "t-alpha",
+  "tier": "opportunist",
+  "pinned_baseline": "invented-daily-v1",
+  "seed": 17,
+  "admitted_rule_ids": [
+    "lantern-daily"
+  ],
+  "history": {
+    "source_id": "invented-lantern-history",
+    "schema_version": "lifecycle-history-v1",
+    "snapshot_version": "v1"
+  },
+  "workload": {
+    "max_events": 100,
+    "max_rules": 2,
+    "max_results": 200
+  },
+  "daily_totals": {
+    "feature": "lantern_daily_value",
+    "counted_kind": "settlement",
+    "units": "minor_currency_units",
+    "currency": "USD",
+    "lifecycle": "one_settlement_per_transaction",
+    "day_boundary": "midnight_utc_t_minus_1",
+    "coverage": [
+      {
+        "merchant_id": "m-lantern",
+        "segment": "small",
+        "from": "2026-02-01T00:00:00.000Z",
+        "to": "2026-02-08T00:00:00.000Z"
+      }
+    ],
+    "reference": {
+      "feature": "lantern_value_baseline",
+      "estimator": "trailing_median_mad",
+      "sensitivity_parameter": "lantern-k",
+      "window_parameter": "lantern-window",
+      "minimum_history_parameter": "lantern-minimum",
+      "fallback": "peer_segment_median",
+      "zero_or_missing_peer": "unavailable"
+    }
+  },
+  "comparability": {
+    "currency": "USD",
+    "fx_snapshot": "none",
+    "observation_window": {
+      "from": "2026-02-07",
+      "to": "2026-02-08"
+    },
+    "resolution_mapping_version": "invented-outcomes-v1",
+    "score_provenance_policy": "assumed-or-absent",
+    "cost_assumptions": {
+      "lambda": 0.1,
+      "intervention_cost": 25
+    }
+  }
+}

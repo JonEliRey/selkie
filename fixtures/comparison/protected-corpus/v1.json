@@ -1,0 +1,56 @@
+{
+  "schema_version": "protected-fraud-case-corpus-v1",
+  "corpus_id": "invented-lantern-known-regressions",
+  "version": 1,
+  "previous": null,
+  "use": "known_regression",
+  "source": {
+    "directory": "../paired-history",
+    "input_digests": {
+      "manifest.json": "9c37e956f0455a431eb70963ce1fa6b62604d44328128a7024869340c4814f75",
+      "scenarios.jsonl": "34857c9fd51583a04aa39dfc76e3a6c9f6dc81b1ab417466fb7c5cf6a7064dfe",
+      "suite/catalog.yaml": "a8e92c5553e0d47c22708bd09676b386867752a07a6ea601ae83c8ee4fd35c37",
+      "suite/rules/lantern-daily.yaml": "29e74d5faca391496d2bdf092a750117c4a8e9c3e645956b109e2449813e0933",
+      "suite/tenant.yaml": "95631749fc33597cc0cfaeb2fa7a26047836e0fffb52b93bd665a30fd0b53fe2"
+    }
+  },
+  "accepted_suite": {
+    "proposal": null,
+    "run_id": "8ebb5ef340959bbd",
+    "suite_id": "ceb07053fcd61a95",
+    "parameter_snapshot_id": "c7f34f815ae5f300",
+    "parameters": {
+      "lantern-floor": 10000,
+      "lantern-k": 3,
+      "lantern-minimum": 3,
+      "lantern-unit": 1,
+      "lantern-window": 5
+    }
+  },
+  "accepted_evidence": {
+    "dataset_id": "invented-paired-history-v1",
+    "partition": "search",
+    "history": {
+      "source_id": "invented-lantern-history",
+      "schema_version": "lifecycle-history-v1",
+      "snapshot_version": "v1"
+    },
+    "outcome_version": "paired-outcomes-v1",
+    "observation_window": {
+      "from": "2026-02-07",
+      "to": "2026-02-08"
+    },
+    "outcome_as_of": "2026-02-09T00:00:00.000Z",
+    "scenario_metrics_sha256": "d39c8a67564b116795417010fed5056b51326c1f91d22a56a380053f81961719",
+    "verdicts_sha256": "d52fcc17334af081fa1748561c4dccbf05e7bef7cbb2469e1c07685fc7012852"
+  },
+  "protected_cases": [
+    {
+      "case_id": "protected",
+      "outcome": "fraud",
+      "detected": true,
+      "detected_by_rule_ids": ["lantern-daily"],
+      "source_event_ids": ["protected-4", "protected-5"]
+    }
+  ]
+}

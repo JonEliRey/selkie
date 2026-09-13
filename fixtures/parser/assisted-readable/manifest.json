@@ -1,0 +1,35 @@
+{
+  "run_type": "replay",
+  "goal": "invented readable-rule semantic replay",
+  "tenant": "paper-kite",
+  "tier": "opportunist",
+  "pinned_baseline": "invented-source-v1",
+  "seed": 90,
+  "admitted_rule_ids": [
+    "lumen-completed-value"
+  ],
+  "history": {
+    "source_id": "invented-worked-values",
+    "schema_version": "supplied-fields-v1",
+    "snapshot_version": "completed-utc-day-v1"
+  },
+  "workload": {
+    "max_events": 20,
+    "max_rules": 1,
+    "max_results": 20
+  },
+  "comparability": {
+    "currency": "USD",
+    "fx_snapshot": "none",
+    "observation_window": {
+      "from": "2026-02-01",
+      "to": "2026-02-02"
+    },
+    "resolution_mapping_version": "invented-outcomes-v1",
+    "score_provenance_policy": "absent",
+    "cost_assumptions": {
+      "lambda": 0.1,
+      "intervention_cost": 25
+    }
+  }
+}

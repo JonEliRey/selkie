@@ -1,0 +1,209 @@
+{
+  "source_sha256": "6cc4d98fcf8bd3241a3739ef9d867e7216ff098e35e80b057ee71976dd285c8a",
+  "author": {
+    "agent": "term_5e819549-c372-4ed9-b6fd-30c40bddfc9f",
+    "basis": "Hand-derived from invented-source-v1 before reading translation output; 12.50 USD = 1250 cents, strict greater-than excludes equality. Prior-day and current-day values supplied independently; no clock computation claimed."
+  },
+  "examples": [
+    {
+      "name": "one cent below",
+      "covers": [
+        "boundary"
+      ],
+      "row": {
+        "tenant": "paper-kite",
+        "risk_type": "lantern-watch",
+        "kind": "settlement",
+        "amount": 1,
+        "currency": "USD",
+        "fields": {
+          "sum_lumen_completed": 1249,
+          "sum_lumen_current": 0
+        }
+      },
+      "expected": "did_not_match"
+    },
+    {
+      "name": "exactly twelve dollars fifty",
+      "covers": [
+        "boundary",
+        "units"
+      ],
+      "row": {
+        "tenant": "paper-kite",
+        "risk_type": "lantern-watch",
+        "kind": "settlement",
+        "amount": 1,
+        "currency": "USD",
+        "fields": {
+          "sum_lumen_completed": 1250,
+          "sum_lumen_current": 0
+        }
+      },
+      "expected": "did_not_match"
+    },
+    {
+      "name": "one cent above",
+      "covers": [
+        "boundary",
+        "units"
+      ],
+      "row": {
+        "tenant": "paper-kite",
+        "risk_type": "lantern-watch",
+        "kind": "settlement",
+        "amount": 1,
+        "currency": "USD",
+        "fields": {
+          "sum_lumen_completed": 1251,
+          "sum_lumen_current": 0
+        }
+      },
+      "expected": "matched"
+    },
+    {
+      "name": "dollar-scaled mistaken input does not meet cents threshold",
+      "covers": [
+        "units"
+      ],
+      "row": {
+        "tenant": "paper-kite",
+        "risk_type": "lantern-watch",
+        "kind": "settlement",
+        "amount": 1,
+        "currency": "USD",
+        "fields": {
+          "sum_lumen_completed": 13,
+          "sum_lumen_current": 0
+        }
+      },
+      "expected": "did_not_match"
+    },
+    {
+      "name": "current day burst cannot replace completed window",
+      "covers": [
+        "window"
+      ],
+      "row": {
+        "tenant": "paper-kite",
+        "risk_type": "lantern-watch",
+        "kind": "settlement",
+        "amount": 1,
+        "currency": "USD",
+        "fields": {
+          "sum_lumen_completed": 0,
+          "sum_lumen_current": 9000
+        }
+      },
+      "expected": "did_not_match"
+    },
+    {
+      "name": "previous completed day wins even with quiet current day",
+      "covers": [
+        "window"
+      ],
+      "row": {
+        "tenant": "paper-kite",
+        "risk_type": "lantern-watch",
+        "kind": "settlement",
+        "amount": 1,
+        "currency": "USD",
+        "fields": {
+          "sum_lumen_completed": 1251,
+          "sum_lumen_current": 0
+        }
+      },
+      "expected": "matched"
+    },
+    {
+      "name": "other tenant",
+      "covers": [
+        "tenant_scope"
+      ],
+      "row": {
+        "tenant": "paper-boat",
+        "risk_type": "lantern-watch",
+        "kind": "settlement",
+        "amount": 1,
+        "currency": "USD",
+        "fields": {
+          "sum_lumen_completed": 9000,
+          "sum_lumen_current": 0
+        }
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "name": "other risk",
+      "covers": [
+        "risk_scope"
+      ],
+      "row": {
+        "tenant": "paper-kite",
+        "risk_type": "cloud-watch",
+        "kind": "settlement",
+        "amount": 1,
+        "currency": "USD",
+        "fields": {
+          "sum_lumen_completed": 9000,
+          "sum_lumen_current": 0
+        }
+      },
+      "expected": "not_applicable"
+    },
+    {
+      "name": "authorization excluded",
+      "covers": [
+        "event_scope"
+      ],
+      "row": {
+        "tenant": "paper-kite",
+        "risk_type": "lantern-watch",
+        "kind": "authorization",
+        "amount": 1,
+        "currency": "USD",
+        "fields": {
+          "sum_lumen_completed": 9000,
+          "sum_lumen_current": 0
+        }
+      },
+      "expected": "did_not_match"
+    },
+    {
+      "name": "other currency excluded",
+      "covers": [
+        "units"
+      ],
+      "row": {
+        "tenant": "paper-kite",
+        "risk_type": "lantern-watch",
+        "kind": "settlement",
+        "amount": 1,
+        "currency": "EUR",
+        "fields": {
+          "sum_lumen_completed": 9000,
+          "sum_lumen_current": 0
+        }
+      },
+      "expected": "did_not_match"
+    },
+    {
+      "name": "missing completed value",
+      "covers": [
+        "window"
+      ],
+      "row": {
+        "tenant": "paper-kite",
+        "risk_type": "lantern-watch",
+        "kind": "settlement",
+        "amount": 1,
+        "currency": "USD",
+        "fields": {
+          "sum_lumen_completed": null,
+          "sum_lumen_current": 9000
+        }
+      },
+      "expected": "did_not_match"
+    }
+  ]
+}

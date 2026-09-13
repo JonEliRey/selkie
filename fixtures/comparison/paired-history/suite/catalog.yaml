@@ -1,0 +1,19 @@
+features:
+  - name: lantern_daily_value
+    kind: derived
+    unit: minor_currency_units
+    window_days: 1
+  - name: lantern_value_baseline
+    kind: baseline
+    unit: minor_currency_units
+    estimator: trailing_median_mad
+    sensitivity_parameter: lantern-k
+    window_parameter: lantern-window
+    minimum_history_parameter: lantern-minimum
+    fallback: peer_segment_median
+    zero_or_missing_peer: unavailable
+
+permitted_conversions:
+  - rule_id: lantern-daily
+    threshold_id: lantern-floor
+    factor_parameter: lantern-unit

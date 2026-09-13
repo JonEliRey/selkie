@@ -1,0 +1,17 @@
+{
+  "kind": "parameter_change",
+  "tenant": "paper-kite",
+  "change": {
+    "rule_id": "lumen-completed-value",
+    "translation_id": "translation-4eae9d2bb38898568cb631c13b38001152d2bfde18a9624a0d962ddb97dd877c",
+    "proposal_version": "invented-improvement-proposal-v1",
+    "proposed_threshold_cents": 1300
+  },
+  "proving_scenario": {
+    "name": "future separately reserved replay required"
+  },
+  "expected_effect": {
+    "hypothesis": "Higher threshold may reduce alerts; no improvement established"
+  },
+  "gate_status": "ungated until replay"
+}

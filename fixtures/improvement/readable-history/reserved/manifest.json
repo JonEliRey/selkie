@@ -1,0 +1,179 @@
+{
+  "run_type": "replay",
+  "goal": "bounded improvement of the saved readable completed-value rule",
+  "tenant": "paper-kite",
+  "tier": "opportunist",
+  "pinned_baseline": "invented-daily-v1",
+  "seed": 17,
+  "admitted_rule_ids": [
+    "lumen-completed-value"
+  ],
+  "history": {
+    "source_id": "invented-lantern-history",
+    "schema_version": "lifecycle-history-v1",
+    "snapshot_version": "v1"
+  },
+  "workload": {
+    "max_events": 100,
+    "max_rules": 2,
+    "max_results": 200
+  },
+  "daily_totals": {
+    "feature": "sum_lumen_completed",
+    "counted_kind": "settlement",
+    "units": "minor_currency_units",
+    "currency": "USD",
+    "lifecycle": "one_settlement_per_transaction",
+    "day_boundary": "midnight_utc_t_minus_1",
+    "coverage": [
+      {
+        "merchant_id": "r-m-protected",
+        "segment": "small",
+        "from": "2026-02-03T00:00:00.000Z",
+        "to": "2026-02-08T00:00:00.000Z"
+      },
+      {
+        "merchant_id": "r-m-new",
+        "segment": "small",
+        "from": "2026-02-03T00:00:00.000Z",
+        "to": "2026-02-08T00:00:00.000Z"
+      },
+      {
+        "merchant_id": "r-m-high",
+        "segment": "large",
+        "from": "2026-02-03T00:00:00.000Z",
+        "to": "2026-02-08T00:00:00.000Z"
+      },
+      {
+        "merchant_id": "r-m-low",
+        "segment": "small",
+        "from": "2026-02-03T00:00:00.000Z",
+        "to": "2026-02-08T00:00:00.000Z"
+      },
+      {
+        "merchant_id": "r-m-unknown",
+        "segment": "small",
+        "from": "2026-02-03T00:00:00.000Z",
+        "to": "2026-02-08T00:00:00.000Z"
+      },
+      {
+        "merchant_id": "r-m-immature",
+        "segment": "small",
+        "from": "2026-02-03T00:00:00.000Z",
+        "to": "2026-02-08T00:00:00.000Z"
+      }
+    ],
+    "reference": {
+      "feature": "lumen_reference",
+      "estimator": "trailing_median_mad",
+      "sensitivity_parameter": "lumen-k",
+      "window_parameter": "lumen-window",
+      "minimum_history_parameter": "lumen-minimum",
+      "fallback": "peer_segment_median",
+      "zero_or_missing_peer": "unavailable"
+    }
+  },
+  "comparability": {
+    "currency": "USD",
+    "fx_snapshot": "none",
+    "observation_window": {
+      "from": "2026-02-07",
+      "to": "2026-02-08"
+    },
+    "resolution_mapping_version": "invented-outcomes-v1",
+    "score_provenance_policy": "assumed-or-absent",
+    "cost_assumptions": {
+      "lambda": 0.1,
+      "intervention_cost": 25
+    }
+  },
+  "authored_outcomes": {
+    "version": "paired-outcomes-v1",
+    "dataset_id": "invented-readable-reserved-v1",
+    "partition": "reserved-validation",
+    "observation_window": {
+      "from": "2026-02-07",
+      "to": "2026-02-08"
+    },
+    "as_of": "2026-02-09T00:00:00.000Z",
+    "stories_enabled": true,
+    "merchants": [
+      {
+        "merchant_id": "r-m-protected",
+        "classification": "fraud",
+        "available_at": "2026-02-08T00:00:00.000Z"
+      },
+      {
+        "merchant_id": "r-m-new",
+        "classification": "fraud",
+        "available_at": "2026-02-08T00:00:00.000Z"
+      },
+      {
+        "merchant_id": "r-m-high",
+        "classification": "legit",
+        "available_at": "2026-02-08T00:00:00.000Z"
+      },
+      {
+        "merchant_id": "r-m-low",
+        "classification": "legit",
+        "available_at": "2026-02-08T00:00:00.000Z"
+      },
+      {
+        "merchant_id": "r-m-unknown",
+        "classification": "unknown",
+        "available_at": "2026-02-08T00:00:00.000Z"
+      },
+      {
+        "merchant_id": "r-m-immature",
+        "classification": "fraud",
+        "available_at": "2026-03-01T00:00:00.000Z"
+      }
+    ],
+    "cases": [
+      {
+        "case_id": "protected",
+        "merchant_id": "r-m-protected",
+        "outcome": "fraud",
+        "available_at": "2026-02-08T00:00:00.000Z",
+        "from": "2026-02-07T00:00:00.000Z",
+        "to": "2026-02-08T00:00:00.000Z",
+        "taxonomy_version": null,
+        "category": null,
+        "merchant_role": null
+      },
+      {
+        "case_id": "new-jump",
+        "merchant_id": "r-m-new",
+        "outcome": "fraud",
+        "available_at": "2026-02-08T00:00:00.000Z",
+        "from": "2026-02-07T00:00:00.000Z",
+        "to": "2026-02-08T00:00:00.000Z",
+        "taxonomy_version": null,
+        "category": null,
+        "merchant_role": null
+      },
+      {
+        "case_id": "unresolved",
+        "merchant_id": "r-m-unknown",
+        "outcome": "unknown",
+        "available_at": "2026-02-08T00:00:00.000Z",
+        "from": "2026-02-07T00:00:00.000Z",
+        "to": "2026-02-08T00:00:00.000Z",
+        "taxonomy_version": null,
+        "category": null,
+        "merchant_role": null
+      },
+      {
+        "case_id": "pending",
+        "merchant_id": "r-m-immature",
+        "outcome": "fraud",
+        "available_at": "2026-03-01T00:00:00.000Z",
+        "from": "2026-02-07T00:00:00.000Z",
+        "to": "2026-02-08T00:00:00.000Z",
+        "taxonomy_version": null,
+        "category": null,
+        "merchant_role": null
+      }
+    ]
+  }
+}

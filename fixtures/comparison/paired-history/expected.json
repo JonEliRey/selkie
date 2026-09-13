@@ -1,0 +1,20 @@
+{
+  "eligibility": "eligible",
+  "reason": "strict_target_improvement",
+  "retained_fraud_case_ids": ["protected"],
+  "lost_fraud_case_ids": [],
+  "new_fraud_case_ids": ["new-jump"],
+  "fraud_case_denominator": 2,
+  "legitimate_merchants": {
+    "denominator": 2,
+    "incumbent": ["m-high"],
+    "candidate": [],
+    "incumbent_count": 1,
+    "candidate_count": 0
+  },
+  "unknown_case_ids": ["unresolved"],
+  "immature_case_ids": ["pending"],
+  "excluded_merchant_ids": ["m-immature", "m-new", "m-protected", "m-unknown"],
+  "reserved_validation": "not_assessed",
+  "experimental_acceptance": "not_assessed"
+}

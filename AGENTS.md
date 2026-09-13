@@ -1,0 +1,3 @@
+# Agent start
+
+Read [README.md](README.md), then follow [the operator guide](docs/operate-rule-lab.md) in order. For a reusable qualification assignment, use [the task](docs/operator-tasks/run-rule-lab.md). Report exact evidence paths and values; stop on missing owner input or a host/runtime blocker. Keep tenant inputs and generated results in ignored local paths. Do not claim production approval or encode a vendor rule.

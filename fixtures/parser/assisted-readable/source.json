@@ -1,0 +1,11 @@
+{
+  "id": "lumen-completed-value",
+  "version": "invented-source-v1",
+  "text": "For tenant paper-kite and risk lantern-watch only, on a USD settlement event, match when that merchant's total settled value in the immediately preceding completed UTC calendar day is strictly greater than 12.50 USD. Count each settlement once; do not count authorizations or the current incomplete day. Values supplied to the rule are integer USD cents. This is a representation of the existing policy, with no tuning latitude.",
+  "scope": { "tenant": "paper-kite", "risk_type": "lantern-watch" },
+  "fields": [
+    { "name": "sum_lumen_completed", "kind": "derived", "meaning": "Merchant total of unique settlements in the previous completed UTC calendar day; excludes authorizations and the current day", "unit": "USD cents", "window": "[previous UTC midnight, current UTC midnight)", "status": "defined" },
+    { "name": "sum_lumen_current", "kind": "derived", "meaning": "Merchant settlement total so far in the current incomplete UTC day; supplied only to distinguish windows", "unit": "USD cents", "window": "[current UTC midnight, event time]", "status": "defined" }
+  ],
+  "unresolved": []
+}

@@ -1,0 +1,5 @@
+features:
+  - name: lantern_daily_value
+    kind: derived
+    unit: minor_currency_units
+    window_days: 1

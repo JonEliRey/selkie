@@ -1,0 +1,31 @@
+{
+  "source_sha256": "6cc4d98fcf8bd3241a3739ef9d867e7216ff098e35e80b057ee71976dd285c8a",
+  "producer": {
+    "agent": "term_dca0524e-f492-4ae3-b563-399a19511799",
+    "model": "not exposed",
+    "session": "ctx_da25bc8b4aad"
+  },
+  "interpretation": {
+    "summary": "For tenant paper-kite and risk lantern-watch only, require a USD settlement event and the merchant's supplied sum_lumen_completed value strictly greater than 1250 integer USD cents (12.50 USD). The supplied aggregate means unique settlements in the immediately preceding completed UTC calendar day, from previous UTC midnight inclusive to current UTC midnight exclusive, excluding authorizations and the current incomplete day. sum_lumen_current is a distinct current-day field and is not used. The threshold is fixed with no tuning latitude; aggregation and deduplication are represented by the source-defined derived field.",
+    "scope": { "tenant": "paper-kite", "risk_type": "lantern-watch" },
+    "fields": [
+      { "name": "sum_lumen_completed", "kind": "derived", "meaning": "Merchant total of unique settlements in the previous completed UTC calendar day; excludes authorizations and the current day", "unit": "USD cents", "window": "[previous UTC midnight, current UTC midnight)", "status": "defined" },
+      { "name": "sum_lumen_current", "kind": "derived", "meaning": "Merchant settlement total so far in the current incomplete UTC day; supplied only to distinguish windows", "unit": "USD cents", "window": "[current UTC midnight, event time]", "status": "defined" }
+    ]
+  },
+  "candidate": {
+    "id": "lumen-completed-value",
+    "applies_to": { "tenant": "paper-kite", "risk_type": "lantern-watch" },
+    "thresholds": [
+      { "id": "lumen-completed-value.minimum-cents", "value": 1250, "min": 1250, "max": 1250, "step": 1 }
+    ],
+    "conditions": [
+      { "kind": "event_type", "operator": "eq", "value": "settlement" },
+      { "kind": "membership", "field": "currency", "operator": "in", "values": ["USD"] },
+      { "kind": "field_constant", "field": "sum_lumen_completed", "operator": "gt", "threshold": "lumen-completed-value.minimum-cents" }
+    ],
+    "tests": []
+  },
+  "unresolved": [],
+  "unsupported_constructs": []
+}

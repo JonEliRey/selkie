@@ -1,0 +1,13 @@
+{
+  "name": "selkie",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Deterministic local rule-improvement laboratory with invented merchant histories.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}

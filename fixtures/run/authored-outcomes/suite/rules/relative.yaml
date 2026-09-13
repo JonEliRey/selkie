@@ -1,0 +1,41 @@
+id: lantern-relative
+applies_to:
+  tenant: t-alpha
+  risk_type: synthetic-risk
+thresholds:
+  - id: lantern-unit
+    value: 1
+    min: 1
+    max: 1
+    step: 1
+  - id: lantern-k
+    value: 3
+    min: 1
+    max: 10
+    step: 1
+  - id: lantern-window
+    value: 5
+    min: 3
+    max: 60
+    step: 1
+  - id: lantern-minimum
+    value: 4
+    min: 1
+    max: 30
+    step: 1
+conditions:
+  - kind: field_factor
+    field: lantern_daily_value
+    operator: gt
+    other_field: lantern_value_baseline
+    factor: lantern-unit
+tests:
+  - name: above assembled threshold
+    row:
+      tenant: t-alpha
+      risk_type: synthetic-risk
+      kind: authorization
+      fields:
+        lantern_daily_value: 160
+        lantern_value_baseline: 145
+    expected: matched

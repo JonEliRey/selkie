@@ -1,0 +1,12 @@
+{
+  "suite_detected": [
+    "jump"
+  ],
+  "fixed_missed": [
+    "jump"
+  ],
+  "relative_detected": [
+    "jump"
+  ],
+  "legitimate_merchants": []
+}

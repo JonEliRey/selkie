@@ -1,0 +1,51 @@
+{
+  "description": "Operator-declared experiment authority added after source-preserving translation; original threshold, conditions and expectations remain fixed.",
+  "source_sha256": "6cc4d98fcf8bd3241a3739ef9d867e7216ff098e35e80b057ee71976dd285c8a",
+  "thresholds": [
+    {
+      "id": "lumen-unit",
+      "value": 1,
+      "min": 1,
+      "max": 1,
+      "step": 1
+    },
+    {
+      "id": "lumen-k",
+      "value": 3,
+      "min": 1,
+      "max": 10,
+      "step": 1
+    },
+    {
+      "id": "lumen-window",
+      "value": 5,
+      "min": 3,
+      "max": 60,
+      "step": 1
+    },
+    {
+      "id": "lumen-minimum",
+      "value": 3,
+      "min": 3,
+      "max": 3,
+      "step": 1
+    }
+  ],
+  "reference_example_value": 1250,
+  "baseline": {
+    "name": "lumen_reference",
+    "kind": "baseline",
+    "unit": "minor_currency_units",
+    "estimator": "trailing_median_mad",
+    "sensitivity_parameter": "lumen-k",
+    "window_parameter": "lumen-window",
+    "minimum_history_parameter": "lumen-minimum",
+    "fallback": "peer_segment_median",
+    "zero_or_missing_peer": "unavailable"
+  },
+  "conversion": {
+    "rule_id": "lumen-completed-value",
+    "threshold_id": "lumen-completed-value.minimum-cents",
+    "factor_parameter": "lumen-unit"
+  }
+}

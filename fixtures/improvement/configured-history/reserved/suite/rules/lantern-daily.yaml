@@ -1,0 +1,45 @@
+id: lantern-daily
+applies_to:
+  tenant: t-alpha
+  risk_type: synthetic-risk
+thresholds:
+  - id: lantern-floor
+    value: 10000
+    min: 5000
+    max: 20000
+    step: 1000
+  - id: lantern-unit
+    value: 1
+    min: 1
+    max: 1
+    step: 1
+  - id: lantern-k
+    value: 3
+    min: 1
+    max: 10
+    step: 1
+  - id: lantern-window
+    value: 5
+    min: 3
+    max: 60
+    step: 1
+  - id: lantern-minimum
+    value: 3
+    min: 1
+    max: 30
+    step: 1
+conditions:
+  - kind: field_constant
+    field: lantern_daily_value
+    operator: gt
+    threshold: lantern-floor
+tests:
+  - name: yesterday exceeded one hundred dollars
+    row:
+      tenant: t-alpha
+      risk_type: synthetic-risk
+      kind: authorization
+      fields:
+        lantern_daily_value: 11000
+        lantern_value_baseline: 145
+    expected: matched
