@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selkie visual architecture and component map</title>
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, sans-serif; line-height: 1.5; }
+    body { max-width: 72rem; margin: 0 auto; padding: 1.5rem; }
+    h1, h2 { line-height: 1.2; }
+    .notice { border-left: .3rem solid #3b82f6; padding: .5rem 1rem; background: color-mix(in srgb, Canvas 92%, #3b82f6); }
+    .map-frame { overflow-x: auto; }
+    .map { width: 100%; min-width: 60rem; height: auto; border: 1px solid CanvasText; border-radius: .4rem; background: Canvas; }
+    .scroll-hint { display: none; margin: .5rem 0; font-weight: 600; }
+    .map .node { fill: #e0f2fe; stroke: #075985; stroke-width: 2; }
+    .map .gate { fill: #fef3c7; stroke: #92400e; stroke-width: 2; }
+    .map .outcome { fill: #dcfce7; stroke: #166534; stroke-width: 2; }
+    .map .human { fill: #fce7f3; stroke: #9d174d; stroke-width: 2; }
+    .map a:focus rect, .map a:hover rect { stroke-width: 4; }
+    .map text { fill: #111827; font: 16px system-ui, sans-serif; text-anchor: middle; pointer-events: none; }
+    .map .small { font-size: 13px; }
+    .map .arrow { fill: none; stroke: CanvasText; stroke-width: 2; marker-end: url(#arrow); }
+    .map .dashed { stroke-dasharray: 7 5; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid CanvasText; padding: .6rem; text-align: left; vertical-align: top; }
+    code { overflow-wrap: anywhere; }
+    @media (max-width: 64rem) {
+      .scroll-hint { display: block; }
+      .table-frame { overflow-x: auto; }
+      .component-table { min-width: 50rem; }
+    }
+    @media (prefers-color-scheme: dark) { .map text { fill: #111827; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Visual architecture and component map</h1>
+    <p class="notice">A local, offline navigation aid. It is not an automatically complete call graph and does not replace the ordered <a href="operate-rule-lab.md">operator guide</a> as execution authority.</p>
+
+    <figure>
+      <p class="scroll-hint">On narrow screens, scroll the diagram sideways to follow every lane.</p>
+      <div class="map-frame">
+      <svg class="map" viewBox="0 0 1200 740" role="img" aria-labelledby="map-title map-description">
+        <title id="map-title">Selkie local rule laboratory flow</title>
+        <desc id="map-description">An admitted materialized history enters bounded improvement directly. An optional saved assisted translation is separately admitted before it can supply a suite. Bounded improvement evaluates paired search history, reserved validation, and protected cases, then records either experimental acceptance or another terminal result; either saved result can be replayed. The current package tree independently produces a finished-package proof. Human production approval is outside the package.</desc>
+        <defs><marker id="arrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7 Z" fill="currentColor"/></marker></defs>
+        <path class="arrow" d="M240 106H270"/><path class="arrow" d="M470 106H500"/><path class="arrow" d="M700 106H730"/><path class="arrow" d="M930 106H960"/>
+        <path class="arrow" d="M240 266H270"/><path class="arrow dashed" d="M370 220V152"/>
+        <path class="arrow" d="M1060 152V270H900V310"/><path class="arrow" d="M1060 152V270H1100V310"/>
+        <path class="arrow" d="M900 394V480"/><path class="arrow" d="M1100 394V440H900V480"/><path class="arrow dashed" d="M800 352H780V522H750"/>
+        <path class="arrow" d="M240 676H270"/>
+        <text x="950" y="258" class="small">all gates pass</text><text x="1100" y="258" class="small">gate failure or stop</text>
+        <text x="430" y="192" class="small">optional admitted suite</text>
+        <a href="../fixtures/comparison/paired-history/README.md" aria-label="Materialized history fixture: manifest, scenarios, and suite"><rect class="node" x="40" y="60" width="200" height="92" rx="10"/><text x="140" y="96">Materialized history<tspan x="140" dy="22" class="small">manifest, scenarios, suite</tspan></text></a>
+        <a href="../src/bounded-improvement.ts" aria-label="Bounded improvement orchestrator"><rect class="node" x="270" y="60" width="200" height="92" rx="10"/><text x="370" y="96">Bounded improvement<tspan x="370" dy="22" class="small">search and permitted proposal</tspan></text></a>
+        <a href="../src/seams/comparison.ts" aria-label="Paired comparison seam"><rect class="gate" x="500" y="60" width="200" height="92" rx="10"/><text x="600" y="96">Paired search evaluation<tspan x="600" dy="22" class="small">incumbent and candidate</tspan></text></a>
+        <a href="../src/reserved-validation.ts" aria-label="Reserved validation module"><rect class="gate" x="730" y="60" width="200" height="92" rx="10"/><text x="830" y="96">Reserved validation<tspan x="830" dy="22" class="small">fresh history and store</tspan></text></a>
+        <a href="../src/seams/protected-corpus.ts" aria-label="Protected corpus check"><rect class="gate" x="960" y="60" width="200" height="92" rx="10"/><text x="1060" y="96">Protected-case check<tspan x="1060" dy="22" class="small">known-regression corpus</tspan></text></a>
+        <a href="../scripts/translate.ts" aria-label="Optional saved translation input and translation command"><rect class="node" x="40" y="220" width="200" height="92" rx="10"/><text x="140" y="256">Optional saved translation<tspan x="140" dy="22" class="small">source, output, expectations</tspan></text></a>
+        <a href="../src/seams/parser.ts" aria-label="Translation and admission parser seam"><rect class="gate" x="270" y="220" width="200" height="92" rx="10"/><text x="370" y="256">Translation and admission<tspan x="370" dy="22" class="small">admission.json and suite</tspan></text></a>
+        <a href="../scripts/improve.ts" aria-label="Experimental acceptance result from improve command"><rect class="outcome" x="800" y="310" width="200" height="84" rx="10"/><text x="900" y="344">Experimental acceptance<tspan x="900" dy="22" class="small">result.json</tspan></text></a>
+        <a href="../scripts/improve.ts" aria-label="Recorded terminal result from improve command, including no valid improvement and other stop reasons"><rect class="outcome" x="1020" y="310" width="160" height="84" rx="10"/><text x="1100" y="344">Terminal result<tspan x="1100" dy="22" class="small">result.json</tspan></text></a>
+        <a href="../scripts/improve.ts" aria-label="Deterministic replay result from improve command"><rect class="node" x="800" y="480" width="200" height="84" rx="10"/><text x="900" y="514">Deterministic replay<tspan x="900" dy="22" class="small">new result.json</tspan></text></a>
+        <a href="operate-rule-lab.md#corporate-owner-checklist" aria-label="Human production approval is outside this package"><rect class="human" x="550" y="480" width="200" height="84" rx="10"/><text x="650" y="514">Human approval<tspan x="650" dy="22" class="small">outside package</tspan></text></a>
+        <a href="../README.md" aria-label="Current package tree for the independent package proof"><rect class="node" x="40" y="630" width="200" height="92" rx="10"/><text x="140" y="666">Current package tree<tspan x="140" dy="22" class="small">independent proof input</tspan></text></a>
+        <a href="../scripts/verify-finished-package.ts" aria-label="Independent finished package proof"><rect class="node" x="270" y="630" width="200" height="92" rx="10"/><text x="370" y="666">Independent package proof<tspan x="370" dy="22" class="small">receipt.json</tspan></text></a>
+      </svg>
+      </div>
+      <figcaption>Click a stage to open its corresponding source, input, or operating documentation. Translation is optional when an admitted suite already exists. A failed gate or another terminal condition records a result such as <code>no_valid_improvement</code>, <code>invalid_candidate</code>, or <code>fresh_reserved_required</code>; it is not always the same outcome. The package proof is an independent branch. An accepted experiment is local evidence only; production approval and vendor encoding remain human-controlled.</figcaption>
+    </figure>
+
+    <h2>Component navigation</h2>
+    <div class="table-frame">
+    <table class="component-table">
+      <thead><tr><th>Group</th><th>Entry points and modules</th><th>Inputs / outputs</th><th>Focused tests</th></tr></thead>
+      <tbody>
+        <tr><th>Public CLIs</th><td><a href="../scripts/translate.ts">translate</a>, <a href="../scripts/run.ts">run</a>, <a href="../scripts/compare.ts">compare</a>, <a href="../scripts/validate.ts">validate</a>, <a href="../scripts/improve.ts">improve</a>, <a href="../scripts/improve-example.ts">improve example</a>, <a href="../scripts/step.ts">step</a>, <a href="../scripts/verify-finished-package.ts">finished-package proof</a></td><td>Saved translation, case directories, proposals, validation stores, experiment and ledger output, and proof receipts</td><td><a href="../test/assisted-parser.test.ts">assisted parser</a>, <a href="../test/comparison.test.ts">comparison</a>, <a href="../test/reserved-validation.test.ts">reserved validation</a>, <a href="../test/bounded-improvement.test.ts">bounded improvement</a>, <a href="../test/historical-stepper.test.ts">historical stepper</a></td></tr>
+        <tr><th>Core evaluation</th><td><a href="../src/seams/run.ts">run seam</a>, <a href="../src/rules.ts">rules</a>, <a href="../src/scenario-outcomes.ts">scenario outcomes</a>, <a href="../src/daily-totals.ts">daily totals</a>, <a href="../src/merchant-reference.ts">merchant reference</a></td><td>Case/suite inputs become canonical ledger and scenario evidence</td><td><a href="../test/scenario-outcomes.test.ts">scenario outcomes</a>, <a href="../test/historical-stepper.test.ts">historical stepper</a></td></tr>
+        <tr><th>Improvement gates</th><td><a href="../src/bounded-improvement.ts">bounded improvement</a>, <a href="../src/seams/comparison.ts">comparison seam</a>, <a href="../src/seams/proposal.ts">proposal seam</a>, <a href="../src/seams/protected-corpus.ts">protected corpus</a></td><td>Pinned histories, permitted proposals, validation, and protected cases become acceptance or no-improvement evidence</td><td><a href="../test/bounded-improvement.test.ts">bounded improvement</a>, <a href="../test/comparison.test.ts">comparison</a>, <a href="../test/permitted-proposal.test.ts">permitted proposal</a>, <a href="../test/reserved-validation.test.ts">reserved validation</a></td></tr>
+        <tr><th>Synthetic fixtures</th><td><a href="../fixtures/parser/assisted-readable/">saved translation</a>, <a href="../fixtures/improvement/readable-history/">readable improvement</a>, <a href="../fixtures/improvement/configured-history/">configured improvement</a>, <a href="../fixtures/comparison/">comparison</a>, <a href="../fixtures/run/">run cases</a></td><td>Invented materialized histories and expected evidence; never operator or tenant input</td><td>The focused tests above consume their relevant fixture groups</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2>Use the map safely</h2>
+    <p>Start at the <a href="../README.md">README</a>, then follow the <a href="operate-rule-lab.md">operator guide</a> for command order, evidence paths, stop conditions, and recovery. The guide requires Node 24 and local built-ins only; this HTML has no script, remote asset, CDN, package installation, or build dependency.</p>
+  </main>
+</body>
+</html>
